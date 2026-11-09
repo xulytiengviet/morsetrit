@@ -5,7 +5,7 @@
   const codec = window.MorseTritCodec;
   const converter = window.CVNSSConverter;
   const DRIVER = {
-    rgb: { name:'RGB', note:'RGB: 0 = đỏ, 1 = lục, 2 = lam. Trình diễn chuyển trạng thái màu, chưa có cảm biến nhận.', desc:['RED / #F65F76','GREEN / #F2C858*','BLUE / #59B9FB'] },
+    rgb: { name:'RGB', note:'RGB: 0 = đỏ, 1 = lục, 2 = lam. Trình diễn chuyển trạng thái màu, chưa có cảm biến nhận.', desc:['RED / #F65F76','GREEN / #50DB97','BLUE / #59B9FB'] },
     traffic: { name:'TRAFFIC LIGHT', note:'Đèn giao thông: 0 = đỏ, 1 = vàng, 2 = xanh. Không được kết nối tới hệ đèn giao thông thật.', desc:['ĐỎ / DỪNG','VÀNG / CHỜ','XANH / ĐI'] },
     brightness: { name:'LUMINANCE', note:'Độ sáng: 0 = thấp, 1 = trung bình, 2 = cao. Thiết bị thực cần hiệu chuẩn ngưỡng và bù ánh sáng nền.', desc:['ĐỘ SÁNG THẤP','ĐỘ SÁNG TRUNG BÌNH','ĐỘ SÁNG CAO'] },
     morse: { name:'TERNARY PULSE', note:'Morse tam phân tự định nghĩa: 0 = xung 150ms, 1 = 300ms, 2 = 500ms. Không tương thích Morse quốc tế.', desc:['XUNG NGẮN / 150ms','XUNG VỪA / 300ms','XUNG DÀI / 500ms'] },
