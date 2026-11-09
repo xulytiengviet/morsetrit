@@ -4,6 +4,17 @@ Trang thử nghiệm mã hóa **tiếng Việt → CVNSS4.0 → A–Z + SPACE �
 
 **Demo dự kiến khi bật GitHub Pages:** https://xulytiengviet.github.io/morsetrit/
 
+## Giao diện Bento (09/11/2026)
+
+Giao diện dựa trên `bento.html` do người phát triển cung cấp, gồm nền kem `#f2f0ed`, chữ đen xanh `#1b211e`, điểm nhấn tím `#5944b5`, ô tím nhạt `#c8b9ff`, thẻ bo tròn và bố cục bất đối xứng 2:1.
+
+- `index.html`: bố cục bento gồm ô tiêu đề, ô toán học `27 = 3³`, ô CVNSS4.0 và ô mô phỏng sáu kênh.
+- `bento-theme.css`: lớp giao diện sáng bổ sung; được nạp sau `style.css` để giữ các hiệu ứng tín hiệu gốc.
+- Toàn bộ encoder, driver, các ví dụ, trường trít nhận và decoder giữ nguyên API và cách hoạt động.
+- Bố cục responsive: desktop dùng lưới không đối xứng, tablet và mobile sắp xếp lại từng ô.
+
+**Lưu ý:** Trang sẽ được cập nhật công khai khi GitHub Pages đã bật để phát hành nhánh `main` từ thư mục `/(root)`.
+
 ## Sử dụng
 
 1. Mở trang `index.html` trong trình duyệt (hoặc dùng GitHub Pages).
