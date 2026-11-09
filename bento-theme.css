@@ -1,0 +1,282 @@
+/* MorseTrit Bento Edition — adaptation of the supplied bento.html reference.
+   Original app styles remain in style.css for signals and behaviours.
+   Palette: warm cream #f2f0ed, ink #1b211e, purple #5944b5, lilac #c8b9ff. */
+
+:root{
+  color-scheme:light;
+  --bg:#f2f0ed;
+  --panel:#ffffff;
+  --panel2:#f7f5f2;
+  --line:#e7e4de;
+  --ink:#1b211e;
+  --muted:#65716a;
+  --accent:#5944b5;
+  --blue:#5944b5;
+  --red:#bc3e59;
+  --gold:#8a6322;
+  --radius:24px;
+}
+html{scroll-padding-top:94px}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  line-height:1.56;
+}
+.wrap{max-width:1240px;padding-left:clamp(20px,4.3vw,62px);padding-right:clamp(20px,4.3vw,62px)}
+.site-header{position:sticky;top:0;z-index:25;background:#f2f0edee;border-bottom:1px solid #1b211e26;box-shadow:none;backdrop-filter:blur(20px)}
+.header-inner{min-height:74px}
+.brand{font-size:18px;letter-spacing:.025em;color:#1b211e}
+.brand .accent{color:var(--accent)}
+.brand small{color:#766f82;font-size:9px;letter-spacing:.16em}
+.brand-mark{background:#fff;border:1px solid #d5ccf0;box-shadow:none;width:38px;height:38px}
+.brand-mark i:nth-child(1){background:#f27681}
+.brand-mark i:nth-child(2){background:#e2bd74}
+.brand-mark i:nth-child(3){background:#6b9be9}
+nav{color:#53594f;font-size:12px;gap:clamp(14px,2.1vw,28px)}
+nav a:hover,.footer a:hover{color:#5944b5}
+.github-link{color:#34266f;border:1px solid #d1c8ea;border-radius:11px;background:#fff;padding:10px 15px}
+.github-link:hover{background:#e5ddff}
+a:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #5944b5;outline-offset:3px}
+
+/* Bento composition: the asymmetry of the user's 2fr/1fr template. */
+.bento-hero{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  grid-template-rows:minmax(338px,auto) minmax(154px,auto);
+  gap:14px;
+  margin:37px 0 18px;
+}
+.bento-hero article{
+  min-width:0;border:0;border-radius:26px;position:relative;overflow:hidden;
+}
+.bento-headline{
+  grid-column:span 4;grid-row:span 1;
+  background:#fff;
+  padding:clamp(26px,3.6vw,44px);
+  display:flex;flex-direction:column;align-items:flex-start;
+  box-shadow:0 1px 2px #1b211e07;
+}
+.bento-topline{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.eyebrow,.overline{color:var(--accent);font-weight:830;font-size:10px;letter-spacing:.16em}
+.eyebrow{margin:0;display:flex;align-items:center;gap:10px}
+.pulse-dot{background:#5944b5;box-shadow:0 0 0 4px #5944b518,0 0 13px #5944b527}
+.bento-edition{font-size:9px;letter-spacing:.12em;color:#8c8a86;font-weight:730}
+.bento-headline h1{
+  margin:0;font-size:clamp(42px,5.15vw,70px);
+  letter-spacing:-.065em;line-height:1.045;font-weight:850;color:#1b211e;
+}
+.bento-headline h1 span{
+  color:var(--accent);
+  background:none;-webkit-text-fill-color:initial;
+}
+.hero-copy{color:#5e6761;font-size:13px;max-width:510px;line-height:1.73;margin:19px 0 18px}
+.hero-copy strong{color:#33295e}
+.hero-cta{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:28px;
+  margin-top:auto;background:#5944b5;color:white;
+  border-radius:12px;padding:12px 17px;text-decoration:none;font-size:12px;font-weight:770;
+  transition:background .18s,transform .18s;box-shadow:0 6px 15px #5944b526;
+}
+.hero-cta:hover{background:#45338e;transform:translateY(-2px)}
+.hero-cta span{font-size:17px;font-weight:500}
+.hero-index{position:absolute;right:30px;bottom:40px;color:#93978f;font-size:9px;letter-spacing:.12em;font-weight:760}
+.bento-violet{
+  grid-column:span 2;grid-row:span 2;
+  background:#c8b9ff;
+  color:#26164f;
+  padding:clamp(23px,2.6vw,34px);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.bento-violet:after{
+  content:"";position:absolute;top:18%;right:-19%;width:190px;height:190px;border-radius:50%;
+  border:1px solid #6f5bab33;pointer-events:none;
+}
+.bento-violet:before{
+  content:"";position:absolute;top:23%;right:-10%;width:140px;height:140px;border-radius:50%;
+  border:1px dashed #6f5bab55;pointer-events:none;
+}
+.bento-card-top{display:flex;align-items:flex-start;justify-content:space-between;font-size:10px;letter-spacing:.13em;font-weight:770;z-index:1}
+.bento-card-top span:last-child{font-size:30px;line-height:1;letter-spacing:0;font-weight:350}
+.bento-equation{display:flex;align-items:baseline;justify-content:center;gap:13px;font-size:clamp(48px,6.1vw,85px);font-weight:860;letter-spacing:-.07em;line-height:1.1;z-index:1}
+.bento-equation>b{font-size:.46em;font-weight:600}
+.bento-equation sup{font-size:.42em;vertical-align:super;margin-left:3px}
+.bento-ternary-line{display:flex;justify-content:space-between;gap:5px;align-items:center;padding:10px;background:#e7deffcc;border:1px solid #a493df55;border-radius:12px;z-index:1}
+.bento-ternary-line span{font-family:Consolas,monospace;font-weight:800;font-size:13px;background:#fff7;border-radius:7px;min-width:23px;padding:6px;text-align:center}
+.bento-ternary-line i{height:1px;flex:1;background:#8c78cc}
+.bento-card-bottom{z-index:1}
+.bento-card-bottom strong{display:block;font-size:clamp(20px,2.6vw,33px);font-weight:830;letter-spacing:-.05em}
+.bento-card-bottom p{margin:5px 0;font-size:13px;font-weight:600}
+.bento-card-bottom small{color:#5c4a89;font-size:10px}
+.bento-small{
+  grid-column:span 2;grid-row:span 1;
+  min-height:154px;padding:20px 23px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.bento-cream{background:#f8ddc5}
+.bento-white{background:#e5dfd9}
+.bento-small .overline{font-size:9px;letter-spacing:.1em;color:#6b5b59}
+.bento-small strong{font-size:clamp(21px,2.7vw,30px);font-weight:820;line-height:1.05;letter-spacing:-.045em}
+.bento-small p{color:#635f5a;font-size:12px;margin:5px 28px 0 0}
+.bento-corner-arrow{position:absolute;right:19px;bottom:16px;font-size:25px;font-weight:350;color:#5a4c48}
+
+/* One-line pipeline ribbon */
+.pipeline-map{
+  border:0;border-radius:17px;background:#fff;gap:10px;padding:15px 18px;margin-bottom:22px;
+  box-shadow:0 1px 2px #251f3307;
+}
+.pipeline-map span{color:#413a54;background:#f3efff;padding:9px 11px;border-radius:10px;font-size:10px;letter-spacing:.01em;font-weight:770}
+.pipeline-map b{color:#8a76c7;font-size:15px}
+
+/* All major functional modules become airy white bento cards */
+.laboratory{margin-top:18px;gap:14px;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr)}
+.column{gap:14px}
+.panel{
+  border:0;border-radius:24px;background:#fff;box-shadow:0 1px 2px #251f3309;
+  padding:clamp(20px,2.5vw,29px);
+}
+.panel-heading{margin-bottom:23px}
+.panel-heading h2{font-size:21px;color:#1b211e;letter-spacing:-.045em}
+.panel-icon{background:#eee8ff;border:0;border-radius:12px;color:#5944b5;font-size:11px;width:42px;height:42px}
+.counter{border:1px solid #e8e3f3;color:#796a8d;background:#faf8ff}
+.field-label{color:#3f473f;font-size:12px}
+textarea{
+  background:#faf9f7;border:1px solid #e5e1d9;color:#1b211e;
+  border-radius:13px;font-size:14px;box-shadow:none;
+}
+textarea:focus{border-color:#7a66d2;box-shadow:0 0 0 3px #5944b51c}
+textarea::placeholder{color:#94908b}
+.input-footer{color:#827e79}
+.button{border-radius:11px;padding:12px 16px}
+.button.primary{background:#5944b5;color:#fff;box-shadow:none}
+.button.primary:hover:not(:disabled){background:#44328f}
+.button.subtle{background:#f3f0f8;border:1px solid #e3dcef;color:#493f67}
+.button.subtle:hover:not(:disabled){background:#e6dff4}
+.sample-row{gap:7px;margin-top:18px}
+.sample-row button{background:#faf8ff;color:#62538b;border-color:#e5def4;padding:8px 11px}
+.sample-row button:hover{color:#4b36a1;border-color:#aa97e5;background:#f0eaff}
+.hint{color:#777c77;font-size:11px}
+.error-message{background:#fff0f1;border:1px solid #edb6bf;color:#97354e}
+.metrics{gap:8px}
+.metrics div{border:0;border-radius:13px;background:#f5f2ff;padding:17px 7px}
+.metrics strong{color:#5944b5;font-size:27px}
+.metrics span{color:#6e6c78;font-size:10px}
+.stage-label{color:#4c5251;font-size:11px}
+.stage-number{background:#ede8ff;color:#5944b5;border-radius:8px}
+.stage-content{background:#faf9f7;border:1px solid #ebe8e1;color:#383936;border-radius:10px}
+.trit-group{background:#faf9ff;border-color:#ece6f8}
+.trit-group i{background:#e9e6ee;color:#534c5b}
+.trit-group i.t0{color:#9e3b4f;background:#fce4e9}
+.trit-group i.t1{color:#8b6615;background:#fff1c9}
+.trit-group i.t2{color:#3b60a7;background:#e0edff}
+.audit-line{border-color:#ece9e4;color:#6f7b73}
+
+/* Signal panel is the one accent-colored studio tile. The screen remains dark
+   to keep light intensity and signal colors distinguishable. */
+.signal-panel{background:#e7deff}
+.signal-panel .panel-heading h2{color:#2f2451}
+.signal-panel .overline{color:#5944b5}
+.signal-panel .panel-icon{background:#d3c5ff;color:#4d359f}
+.driver-grid{gap:8px}
+.driver-button{
+  background:#fff9;border:1px solid #cfc3ee;border-radius:11px;
+  color:#45366e;min-height:48px;padding:10px 10px;font-size:11px;
+}
+.driver-button:hover,.driver-button.active{border-color:#5944b5;background:#5944b5;color:#fff}
+.signal-screen{
+  border:0;border-radius:17px;background:radial-gradient(ellipse at 60% 36%,#493574aa,transparent 65%),#252038;
+  box-shadow:0 6px 25px #52447418;
+}
+.signal-screen:before{background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px)}
+.screen-top,.screen-foot{color:#c5bfd9}
+.signal-readout>span{color:#b4abd0}
+.signal-readout em{color:#d4cde9}
+.progress-track{background:#71638a}
+.progress-track>div{background:linear-gradient(90deg,#b5a4ff,#f7b9d3)}
+.player .button.primary{background:#5944b5;color:#fff}
+.player .button.subtle{border-color:#b4a4df;background:#d9cbfa;color:#3a286f}
+.player .speed-label{color:#4c4071}
+.player .speed-label output{color:#43308c}
+.player input[type=range]{accent-color:#5944b5}
+.signal-hint{color:#5f517e}
+.rail-trit{background:#fff9;border-color:#c9b9ed;color:#40385b}
+.rail-trit.t0{background:#fbe6e9;color:#a5364c;border-color:#eda2b0}
+.rail-trit.t1{background:#fff1cf;color:#8d6110;border-color:#e7d08f}
+.rail-trit.t2{background:#dcecff;color:#245da0;border-color:#a9cbec}
+.rail-trit.selected{color:#261a59;box-shadow:0 0 0 2px #5944b5}
+.rail-caption{color:#645681}
+.decoded-box{border:1px solid #d0e8d8;background:#eef9f1;border-radius:14px}
+.decoded-label{color:#377651}
+.decoded-box code{color:#204e33}
+.decoded-box p#decodedVietnamese{color:#225737}
+.roundtrip-badge{background:#d4f4df;border-color:#a5d8b6;color:#185d35}
+.roundtrip-badge.warn{background:#fce5e5;border-color:#edb5bc;color:#9a3f56}
+
+/* Finishing tiles */
+.reference-section,.methodology{padding-top:70px}
+.section-heading h2{font-size:clamp(26px,2.8vw,36px);color:#1b211e;letter-spacing:-.05em}
+.section-heading p{color:#68716b}
+.alphabet-grid{gap:10px}
+.alphabet-item{background:#fff;border:0;border-radius:16px;box-shadow:0 1px 2px #1b211e07}
+.alphabet-item:hover{border-color:transparent;box-shadow:0 3px 0 #8d77da}
+.alphabet-item strong{color:#242421}
+.alphabet-item .base-index{color:#827c83}
+.alphabet-item code{color:#5944b5;font-weight:760}
+.fact-grid{gap:14px}
+.fact{background:#fff;border:0;border-radius:24px;box-shadow:0 1px 2px #1b211e07;padding:27px}
+.fact>span{color:#5944b5}
+.fact h3{color:#1b211e}
+.fact p{color:#686f68}
+.fact strong{color:#5944b5}
+.research-note{background:#e8e0ff;border-left:4px solid #5944b5;color:#51446b;border-radius:0 14px 14px 0}
+.research-note strong{color:#3f2c80}
+.footer{background:#f2f0ed;border-top:1px solid #ded8ce;color:#74736f;margin-top:70px}
+.footer b{color:#1b211e}
+.footer a{color:#5944b5}
+.signal-orb.c0{background:#f65f76;color:#f65f76}
+.signal-orb.c1{background:#50db97;color:#50db97}
+.signal-orb.c2{background:#59b9fb;color:#59b9fb}
+
+@media(max-width:1020px){
+  .bento-headline h1{font-size:clamp(37px,5vw,57px)}
+  .hero-index{display:none}
+  .bento-hero{grid-template-rows:minmax(340px,auto) minmax(146px,auto)}
+}
+@media(max-width:820px){
+  .bento-hero{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto}
+  .bento-headline{grid-column:span 4;grid-row:auto;min-height:355px}
+  .bento-violet{grid-column:span 2;grid-row:span 2;min-height:350px}
+  .bento-small{grid-column:span 2;grid-row:auto;min-height:170px}
+  .laboratory{grid-template-columns:1fr}
+  .driver-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .alphabet-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .fact-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .header-inner{min-height:68px}
+  .brand{font-size:17px}
+  nav a:not(.github-link){display:none}
+  .bento-hero{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:20px}
+  .bento-headline{grid-column:span 2;min-height:374px;padding:26px}
+  .bento-headline h1{font-size:clamp(37px,9vw,48px)}
+  .hero-copy{font-size:12px;line-height:1.66;margin:16px 0 19px}
+  .bento-violet{grid-column:span 2;grid-row:auto;min-height:278px}
+  .bento-equation{font-size:64px}
+  .bento-small{grid-column:span 1;min-height:170px;padding:18px}
+  .bento-small strong{font-size:22px}
+  .bento-small p{font-size:11px;margin-right:0}
+  .bento-corner-arrow{right:14px;top:8px;bottom:auto}
+  .bento-small .overline{font-size:8px;max-width:90%;line-height:1.5}
+  .pipeline-map{padding:12px;gap:7px;border-radius:14px}
+  .pipeline-map span{font-size:9px;padding:8px}
+  .panel{padding:20px;border-radius:21px}
+  .driver-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alphabet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .reference-section,.methodology{padding-top:52px}
+}
+@media(max-width:350px){
+  .bento-headline h1{font-size:34px}
+  .bento-small{grid-column:span 2;min-height:128px}
+  .brand small{font-size:8px}
+  .github-link{padding:8px 9px}
+}
+@media(prefers-reduced-motion:reduce){.hero-cta{transition:none}}
