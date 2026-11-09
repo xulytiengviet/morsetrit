@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b101b">
+  <meta name="theme-color" content="#f2f0ed">
   <meta name="description" content="MorseTrit Lab: mô phỏng chuyển tiếng Việt qua CVNSS4.0, Base27, 3 trít, RGB, đèn giao thông, độ sáng, Morse tam phân, 3-FSK và rung.">
   <title>MorseTrit Lab — CVNSS4.0 × Base27 × Ternary</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./bento-theme.css">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="./" aria-label="MorseTrit Lab">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span>MORSE<span class="accent">TRIT</span><small>LAB / 4.0</small></span>
+        <span>MORSE<span class="accent">TRIT</span><small>BENTO LAB / 4.0</small></span>
       </a>
       <nav aria-label="Điều hướng">
         <a href="#laboratory">Phòng thí nghiệm</a>
@@ -24,19 +25,32 @@
     </div>
   </header>
   <main class="wrap">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div>
-        <p class="eyebrow"><span class="pulse-dot"></span> OPEN SOURCE · CVNSS4.0 · EXPERIMENTAL PHYSICAL CHANNELS</p>
-        <h1 id="heroTitle">Một ngôn ngữ.<br><span>Ba trạng thái.</span><br>Vô vàn tín hiệu.</h1>
-        <p class="hero-copy">Nhập tiếng Việt, xem từng ký tự được chuyển thành đúng <strong>3 trít</strong> và phát qua sáu dạng mô phỏng. Sửa luồng nhận để kiểm chứng giải mã ngược ngay trên trình duyệt.</p>
-        <div class="hero-tags"><span>26 chữ + SPACE</span><span>100% không gian mã 27 trạng thái</span><span>Không cần máy chủ</span></div>
-      </div>
-      <div class="hero-figure" aria-label="Minh họa 27 bằng 3 mũ 3">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="figure-core"><small>BASE 27</small><b>3<sup>3</sup></b><span>= 27 mã</span></div>
-        <div class="figure-trits"><span>0</span><span>1</span><span>2</span></div>
-        <p>27/27 CODEWORDS UTILIZED <strong>100%</strong></p>
-      </div>
+
+    <!-- Bento hero follows the user's bento.html reference: cream canvas, asymmetrical cards, lavender feature -->
+    <section class="bento-hero" aria-labelledby="heroTitle">
+      <article class="bento-headline">
+        <div class="bento-topline"><span class="eyebrow"><span class="pulse-dot"></span> MORSETRIT / BENTO LAB</span><span class="bento-edition">PHIÊN BẢN 2026 ↗</span></div>
+        <h1 id="heroTitle">Tiếng Việt.<br><span>Ba trạng thái.</span><br>Triệu tín hiệu.</h1>
+        <p class="hero-copy">Một phòng thí nghiệm tín hiệu dành cho tiếng Việt. Chuyển CVNSS4.0 thành Base27, rồi ba trít cho mỗi ký tự. Xem trực quan, phát tín hiệu và giải mã ngược.</p>
+        <a class="hero-cta" href="#laboratory">Bắt đầu mô phỏng <span aria-hidden="true">↗</span></a>
+        <span class="hero-index">01—06 / INTERACTIVE DRIVERS</span>
+      </article>
+      <article class="bento-violet" aria-label="Toán học Base27: 27 bằng ba mũ ba">
+        <div class="bento-card-top"><span>MATHEMATICAL MATCH</span><span aria-hidden="true">↗</span></div>
+        <div class="bento-equation"><span>27</span><b>=</b><span>3<sup>3</sup></span></div>
+        <div class="bento-ternary-line" aria-hidden="true"><span>0</span><span>1</span><span>2</span><i></i><span>000</span><span>222</span></div>
+        <div class="bento-card-bottom"><strong>27 / 27 từ mã</strong><p>Không lãng phí trạng thái.</p><small>Không đồng nghĩa 100% truyền dẫn.</small></div>
+      </article>
+      <article class="bento-small bento-cream">
+        <span class="overline">01 / NGÔN NGỮ</span>
+        <div><strong>CVNSS4.0</strong><p>26 ký tự A–Z và một dấu cách.</p></div>
+        <span class="bento-corner-arrow" aria-hidden="true">↗</span>
+      </article>
+      <article class="bento-small bento-white">
+        <span class="overline">02 / TRUYỀN TÍN HIỆU</span>
+        <div><strong>06 driver</strong><p>Đèn · Màu · Morse · FSK · Rung.</p></div>
+        <span class="bento-corner-arrow" aria-hidden="true">↗</span>
+      </article>
     </section>
     <div class="pipeline-map" aria-label="Chu trình mã hóa">
       <span>TIẾNG VIỆT</span><b>→</b><span>CVNSS4.0</span><b>→</b><span>A–Z + SPACE</span><b>→</b><span>BASE27</span><b>→</b><span>3 TRÍT</span><b>→</b><span>6 KÊNH</span><b>↔</b><span>GIẢI MÃ</span>
