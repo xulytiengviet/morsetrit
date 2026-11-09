@@ -6,7 +6,7 @@ Trang thử nghiệm mã hóa **tiếng Việt → CVNSS4.0 → A–Z + SPACE �
 
 ## Sử dụng
 
-1. Mở trang \`index.html\` trong trình duyệt (hoặc dùng GitHub Pages).
+1. Mở trang `index.html` trong trình duyệt (hoặc dùng GitHub Pages).
 2. Nhập tiếng Việt, chọn **Mã hóa tín hiệu** và kiểm tra bốn bước trong pipeline.
 3. Chọn một trong sáu chế độ **RGB, đèn giao thông, độ sáng, Morse tam phân, Ternary FSK, rung**.
 4. Chọn **Phát tín hiệu**. Trình duyệt phát âm FSK qua Web Audio API; chế độ rung phụ thuộc hỗ trợ của thiết bị.
@@ -18,24 +18,24 @@ Trang tĩnh, không dùng máy chủ, tài khoản, framework hoặc CDN. Trình
 
 | Tệp | Vai trò |
 |---|---|
-| \`index.html\` | Giao diện phòng thí nghiệm; chú thích khoa học |
-| \`style.css\` | CSS responsive; mô phỏng màu/đèn/xung/dao động |
-| \`app.js\` | Điều khiển UI, phát Web Audio FSK, vibration và giải mã tương tác |
-| \`codec.js\` | API có thể kiểm thử: ánh xạ Base27 ↔ trít, xác thực luồng, so sánh round-trip |
-| \`cvnss-converter.js\` | Bản nguyên gốc *CVNSS4.0 v5.0.0-audit-safe* do người tạo dự án cung cấp |
-| \`tests/codec.test.cjs\` | Kiểm thử Node.js không dùng thư viện ngoài |
+| `index.html` | Giao diện phòng thí nghiệm; chú thích khoa học |
+| `style.css` | CSS responsive; mô phỏng màu/đèn/xung/dao động |
+| `app.js` | Điều khiển UI, phát Web Audio FSK, vibration và giải mã tương tác |
+| `codec.js` | API có thể kiểm thử: ánh xạ Base27 ↔ trít, xác thực luồng, so sánh round-trip |
+| `cvnss-converter.js` | Bản nguyên gốc *CVNSS4.0 v5.0.0-audit-safe* do người tạo dự án cung cấp |
+| `tests/codec.test.cjs` | Kiểm thử Node.js không dùng thư viện ngoài |
 
 ### Giao thức Base27
 
-Bảng mã: \`SPACE=0, A=1, ..., Z=26\`.
+Bảng mã: `SPACE=0, A=1, ..., Z=26`.
 
 Với mỗi giá trị \(v\), tính \(t_2=\lfloor v/9\rfloor\), \(t_1=\lfloor (v\bmod 9)/3\rfloor\), \(t_0=v\bmod 3\).
 
-Ba trít \`t2 t1 t0\` biểu diễn \(v=9t_2+3t_1+t_0\).
+Ba trít `t2 t1 t0` biểu diễn \(v=9t_2+3t_1+t_0\).
 
-- \`SPACE\` → 0 → \`000\`
-- \`A\` → 1 → \`001\`
-- \`Z\` → 26 → \`222\`
+- `SPACE` → 0 → `000`
+- `A` → 1 → `001`
+- `Z` → 26 → `222`
 
 **27 = 3³** nên 27/27 tổ hợp trít được sử dụng, không có từ mã Base27 bị bỏ trống. Với 5 bit nhị phân có 32 tổ hợp và 5/32 tổ hợp không dùng (15,625%). Đây chỉ là **hiệu suất sử dụng không gian từ mã**, **không** chứng minh CVNSS4.0 hoặc đường truyền có độ chính xác 100%, cũng không chứng minh nén tốt hơn toàn cục.
 
@@ -64,9 +64,9 @@ Bộ chuyển đổi được dùng đúng bản **5.0.0-audit-safe**: 758 dòng
 
 Yêu cầu Node.js ≥ 18:
 
-\`\`\`bash
+```bash
 node --test tests/codec.test.cjs
-\`\`\`
+```
 
 Gồm kiểm thử 27 giá trị, các ví dụ tiếng Việt, nhập nhằng, lỗi định dạng, và thay đổi một trít.
 
@@ -77,5 +77,5 @@ Trong GitHub mở **Settings → Pages → Build and deployment → Deploy from 
 ## Nguồn và ghi nhận
 
 - Dự án thử nghiệm: [xulytiengviet/morsetrit](https://github.com/xulytiengviet/morsetrit).
-- CVNSS4.0: chuyển đổi chữ tiếng Việt, có lịch sử quy tắc và tác giả riêng. Tệp \`cvnss-converter.js\` được bảo tồn từ bản người dùng cung cấp; vui lòng kiểm tra quyền sử dụng và ghi công nguồn gốc khi tái phân phối.
+- CVNSS4.0: chuyển đổi chữ tiếng Việt, có lịch sử quy tắc và tác giả riêng. Tệp `cvnss-converter.js` được bảo tồn từ bản người dùng cung cấp; vui lòng kiểm tra quyền sử dụng và ghi công nguồn gốc khi tái phân phối.
 - Demo phục vụ đào tạo, nghiên cứu, đánh giá giải pháp tam phân. Không dùng cho liên lạc cứu hộ thực tế hay điều khiển an toàn trọng yếu nếu chưa có chứng nhận và kiểm thử phù hợp.
