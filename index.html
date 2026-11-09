@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b101b">
+  <meta name="description" content="MorseTrit Lab: mô phỏng chuyển tiếng Việt qua CVNSS4.0, Base27, 3 trít, RGB, đèn giao thông, độ sáng, Morse tam phân, 3-FSK và rung.">
+  <title>MorseTrit Lab — CVNSS4.0 × Base27 × Ternary</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./" aria-label="MorseTrit Lab">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>MORSE<span class="accent">TRIT</span><small>LAB / 4.0</small></span>
+      </a>
+      <nav aria-label="Điều hướng">
+        <a href="#laboratory">Phòng thí nghiệm</a>
+        <a href="#reference">Bảng mã</a>
+        <a href="#methodology">Phương pháp</a>
+        <a class="github-link" href="https://github.com/xulytiengviet/morsetrit" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div>
+        <p class="eyebrow"><span class="pulse-dot"></span> OPEN SOURCE · CVNSS4.0 · EXPERIMENTAL PHYSICAL CHANNELS</p>
+        <h1 id="heroTitle">Một ngôn ngữ.<br><span>Ba trạng thái.</span><br>Vô vàn tín hiệu.</h1>
+        <p class="hero-copy">Nhập tiếng Việt, xem từng ký tự được chuyển thành đúng <strong>3 trít</strong> và phát qua sáu dạng mô phỏng. Sửa luồng nhận để kiểm chứng giải mã ngược ngay trên trình duyệt.</p>
+        <div class="hero-tags"><span>26 chữ + SPACE</span><span>100% không gian mã 27 trạng thái</span><span>Không cần máy chủ</span></div>
+      </div>
+      <div class="hero-figure" aria-label="Minh họa 27 bằng 3 mũ 3">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="figure-core"><small>BASE 27</small><b>3<sup>3</sup></b><span>= 27 mã</span></div>
+        <div class="figure-trits"><span>0</span><span>1</span><span>2</span></div>
+        <p>27/27 CODEWORDS UTILIZED <strong>100%</strong></p>
+      </div>
+    </section>
+    <div class="pipeline-map" aria-label="Chu trình mã hóa">
+      <span>TIẾNG VIỆT</span><b>→</b><span>CVNSS4.0</span><b>→</b><span>A–Z + SPACE</span><b>→</b><span>BASE27</span><b>→</b><span>3 TRÍT</span><b>→</b><span>6 KÊNH</span><b>↔</b><span>GIẢI MÃ</span>
+    </div>
+    <section id="laboratory" class="laboratory" aria-label="Phòng thí nghiệm MorseTrit">
+      <div class="column">
+        <article class="panel">
+          <header class="panel-heading"><div><span class="overline">01 / INPUT</span><h2>Tiếng Việt đầu vào</h2></div><span class="panel-icon">VN</span></header>
+          <label for="sourceText" class="field-label">Nội dung cần truyền</label>
+          <textarea id="sourceText" rows="3" maxlength="200" spellcheck="false">Tôi ổn</textarea>
+          <div class="input-footer"><span id="inputCounter">7 / 200 ký tự</span><span>UTF-8 → NFC → CVNSS4.0</span></div>
+          <div class="action-row">
+            <button class="button primary" id="encodeBtn" type="button">Mã hóa tín hiệu <span aria-hidden="true">→</span></button>
+            <button class="button subtle" id="resetBtn" type="button">Đặt lại</button>
+          </div>
+          <div class="sample-row" role="group" aria-label="Câu mẫu">
+            <button type="button" data-sample="Tôi ổn">Tôi ổn</button>
+            <button type="button" data-sample="Cần nước">Cần nước</button>
+            <button type="button" data-sample="Có người bị thương">Có người bị thương</button>
+            <button type="button" data-sample="Gọi cứu hộ">Gọi cứu hộ</button>
+          </div>
+          <p id="errorMessage" class="error-message" role="alert" hidden></p>
+          <p class="hint">Bản Base27 thuần chỉ chứa chữ A–Z và dấu cách. Dấu câu, số và emoji sẽ được báo lỗi, không âm thầm loại bỏ.</p>
+        </article>
+        <article class="panel">
+          <header class="panel-heading"><div><span class="overline">02 / ENCODER</span><h2>Giải phẫu pipeline</h2></div><span class="counter" id="codecVersion">v5 audit-safe</span></header>
+          <div class="metrics">
+            <div><strong id="metricChars">—</strong><span>Ký tự Base27</span></div>
+            <div><strong id="metricTrits">—</strong><span>Tổng trít</span></div>
+            <div><strong id="metricWaste">0%</strong><span>Mã trạng thái dư</span></div>
+          </div>
+          <div class="stage"><div class="stage-label"><span class="stage-number">01</span><span>CVNSS4.0</span></div><code class="stage-content" id="stageCvnss">—</code></div>
+          <div class="stage"><div class="stage-label"><span class="stage-number">02</span><span>A–Z + SPACE</span></div><code class="stage-content" id="stageAscii">—</code></div>
+          <div class="stage"><div class="stage-label"><span class="stage-number">03</span><span>Base27 · SPACE=0, A=1…Z=26</span></div><div class="stage-content word-break" id="stageValues">—</div></div>
+          <div class="stage"><div class="stage-label"><span class="stage-number">04</span><span>3 trít mỗi ký tự</span></div><div class="stage-content trit-words" id="stageTriplets">—</div></div>
+          <div class="audit-line"><span id="auditBadge" class="health-dot"></span><span id="auditText">Đang tải kiểm định bộ chuyển đổi…</span></div>
+        </article>
+      </div>
+      <div class="column">
+        <article class="panel signal-panel">
+          <header class="panel-heading"><div><span class="overline">03 / DRIVER LAB</span><h2>Kênh truyền vật lý</h2></div><span class="panel-icon">TX</span></header>
+          <div class="driver-grid" role="group" aria-label="Chọn kiểu tín hiệu">
+            <button type="button" class="driver-button active" data-driver="rgb" aria-pressed="true"><span>🔴</span> RGB</button>
+            <button type="button" class="driver-button" data-driver="traffic" aria-pressed="false"><span>🚦</span> Đèn giao thông</button>
+            <button type="button" class="driver-button" data-driver="brightness" aria-pressed="false"><span>💡</span> Độ sáng</button>
+            <button type="button" class="driver-button" data-driver="morse" aria-pressed="false"><span>📡</span> Morse tam phân</button>
+            <button type="button" class="driver-button" data-driver="fsk" aria-pressed="false"><span>🎵</span> Ternary FSK</button>
+            <button type="button" class="driver-button" data-driver="vibration" aria-pressed="false"><span>📳</span> Rung</button>
+          </div>
+          <div id="signalScreen" class="signal-screen" aria-live="off">
+            <div class="screen-top"><span><span class="pulse-dot"></span> LIVE SIGNAL PREVIEW</span><span id="signalMode">RGB</span></div>
+            <div class="screen-middle">
+              <div class="signal-art" id="signalArt" aria-hidden="true"></div>
+              <div class="signal-readout"><span>TRIT ĐANG PHÁT</span><strong id="activeTrit">—</strong><em id="signalDetail">Chọn phát để chạy mô phỏng</em></div>
+            </div>
+            <div class="screen-foot"><span id="playbackPosition">0 / 0 trít</span><span id="playbackState">SẴN SÀNG</span></div>
+            <div class="progress-track"><div id="progressBar"></div></div>
+          </div>
+          <div class="player">
+            <button class="button primary" id="playBtn" type="button">▶ Phát tín hiệu</button>
+            <button class="button subtle" id="stopBtn" type="button">■ Dừng</button>
+            <label class="speed-label" for="speedSlider">Tốc độ <output id="speedValue" for="speedSlider">1.0×</output></label>
+            <input type="range" id="speedSlider" min="50" max="200" value="100" step="25" aria-label="Tốc độ phát phần trăm">
+          </div>
+          <p id="driverNote" class="hint signal-hint">RGB: 0 = đỏ, 1 = lục, 2 = lam. Chỉ mô phỏng trạng thái ánh sáng.</p>
+          <div class="trit-rail" id="tritRail" aria-label="Dãy trít truyền"></div>
+          <p class="rail-caption" id="railCaption">Dãy trít xuất hiện sau khi mã hóa.</p>
+        </article>
+        <article class="panel">
+          <header class="panel-heading"><div><span class="overline">04 / RECEIVER</span><h2>Giải mã ngược</h2></div><span class="panel-icon">RX</span></header>
+          <label for="rxStream" class="field-label">Luồng trít nhận được — có thể chỉnh sửa</label>
+          <textarea id="rxStream" rows="3" spellcheck="false" placeholder="Ví dụ: 000 001 222"></textarea>
+          <div class="action-row">
+            <button type="button" id="decodeBtn" class="button primary">Giải mã ngược ↶</button>
+            <button type="button" id="noiseBtn" class="button subtle">Gây lỗi 1 trít</button>
+            <button type="button" id="restoreBtn" class="button subtle">Khôi phục luồng</button>
+          </div>
+          <p id="decodeError" class="error-message" role="alert" hidden></p>
+          <div class="decoded-box" id="decodedBox" hidden>
+            <div class="decoded-label">Base27 → CVNSS4.0</div><code id="decodedAscii">—</code>
+            <div class="decoded-label">Tiếng Việt phục hồi <span id="roundtripBadge" class="roundtrip-badge">—</span></div>
+            <p id="decodedVietnamese">—</p>
+            <p id="decodeCaveat" class="hint"></p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="reference" class="reference-section">
+      <div class="section-heading"><span class="overline">REFERENCE / 27 SYMBOLS</span><h2>Bảng ánh xạ song ánh</h2><p>Mỗi ký tự có đúng một giá trị Base27 và đúng một bộ ba trít; tất cả 27 từ mã được dùng.</p></div>
+      <div class="alphabet-grid" id="alphabetGrid" aria-label="Bảng mã 27 ký tự"></div>
+    </section>
+    <section id="methodology" class="methodology">
+      <div class="section-heading"><span class="overline">SCIENTIFIC NOTES</span><h2>Vì sao 27 = 3³ quan trọng?</h2></div>
+      <div class="fact-grid">
+        <article class="fact"><span>01 / TOÁN HỌC</span><h3>Song ánh 27 ↔ 3 trít</h3><p>5 bit cho 27 ký tự cần 32 tổ hợp và bỏ trống 5 mã (15,625% không gian mã). Ba trít cho đúng 27 tổ hợp, không còn từ mã dư. Đây là hiệu suất <strong>sử dụng tập mã</strong>, không phải tỷ lệ nén toàn hệ.</p></article>
+        <article class="fact"><span>02 / CHỮ VIẾT</span><h3>CVNSS4.0 không luôn khả nghịch</h3><p>Phiên bản converter kèm theo có <strong>56 nhóm mã nhập nhằng</strong> và 5 va chạm trọng yếu. Bộ giải mã chọn dạng chuẩn định trước; sai biệt chữ hoa/thường và dạng viết cũng có thể xảy ra. Không suy ra tỷ lệ đúng 99,9% khi chưa có tập kiểm thử.</p></article>
+        <article class="fact"><span>03 / TRUYỀN TIN</span><h3>FSK chỉ là trình diễn phát</h3><p>Ba âm 600/1000/1400 Hz có thể được tách bằng Goertzel hoặc FFT, nhưng trang này <strong>chưa thu âm hay ước lượng BER</strong>. Kênh thực cần đồng bộ trít, khung dữ liệu, phát hiện lỗi và kiểm thử dưới nhiễu.</p></article>
+      </div>
+      <p class="research-note">Morse tam phân ở đây là <strong>ba thời lượng xung tự định nghĩa</strong>, không phải mã Morse quốc tế. Các hiệu ứng RGB, đèn, rung và độ sáng mô phỏng bộ phát; giải mã thực hiện từ luồng trít số, không phải đo vật lý từ cảm biến.</p>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><span><b>MORSETRIT</b> · Vietnamese → CVNSS4.0 → Base27 → Ternary</span><span>Open source · MIT · <a href="https://github.com/xulytiengviet/morsetrit" target="_blank" rel="noopener noreferrer">xulytiengviet/morsetrit ↗</a></span></div></footer>
+  <script src="./cvnss-converter.js" defer></script>
+  <script src="./codec.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
